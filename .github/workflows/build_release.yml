@@ -46,7 +46,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: 'https://registry.npmjs.org'
 
       - uses: pnpm/action-setup@v4
 
@@ -92,5 +91,5 @@ jobs:
         if: ${{ steps.commit.outcome == 'success' }}
         run: |
           node -e "import('@gkd-kit/tools').then((m) => m.updatePkgVersion());"
-          pnpm publish --no-git-checks
+          pnpm publish --no-git-checks --provenance
           node -e "import('@gkd-kit/tools').then((m) => m.syncNpmmirror());"
